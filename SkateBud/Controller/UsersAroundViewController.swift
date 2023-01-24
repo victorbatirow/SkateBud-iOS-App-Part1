@@ -188,6 +188,16 @@ extension UsersAroundViewController: UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? UserAroundCollectionViewCell {
+            let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
+            let detailVC = storyboard.instantiateViewController(withIdentifier: IDENTIFIER_DETAIL) as! DetailViewController
+            detailVC.user = cell.user
+
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.size.width/3 - 2, height: view.frame.size.width/3)
     }

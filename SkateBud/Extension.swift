@@ -59,6 +59,7 @@ func timeAgoSinceDate(_ date: Date, currentDate: Date, numericDates: Bool) -> St
 }
 
 extension UIImageView {
+    
     func loadImage(_ urlString: String?, onSuccess: ((UIImage) -> Void)? = nil) {
         self.image = UIImage()
         guard let string = urlString else { return }
@@ -70,6 +71,16 @@ extension UIImageView {
             }
         }
     }
+    
+    func addBlackGradientLayer(frame: CGRect, colors: [UIColor]) {
+        let gradient = CAGradientLayer()
+        gradient.frame = frame
+        gradient.locations = [0.5, 1.0]
+        
+        gradient.colors = colors.map{$0.cgColor}
+        self.layer.addSublayer(gradient)
+    }
+    
 }
 
 extension Double {

@@ -131,6 +131,8 @@ extension ChatViewController {
         avatarImageView.contentMode = .scaleAspectFill
         avatarImageView.layer.cornerRadius = 18
         avatarImageView.clipsToBounds = true
+        avatarImageView.isUserInteractionEnabled = true
+        tapRecognition(image: avatarImageView)
         containView.addSubview(avatarImageView)
         
         if imagePartner != nil {
@@ -151,6 +153,20 @@ extension ChatViewController {
         updateTopLabel(bool: false)
         
         self.navigationItem.titleView = topLabel
+    }
+    
+    func tapRecognition(image: UIImageView) {
+        image.isUserInteractionEnabled = true
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        image.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func imageViewTapped(imageView: UIImageView) {
+        let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
+        let detailVC = storyboard.instantiateViewController(withIdentifier: IDENTIFIER_DETAIL) as! DetailViewController
+        detailVC.user = partnerUser
+
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func updateTopLabel(bool: Bool) {
