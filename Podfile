@@ -7,5 +7,6 @@ target 'SkateBud' do
 
   # Pods for SkateBud
   pod 'ProgressHUD'
+  pod 'SDWebImage'
 
 end

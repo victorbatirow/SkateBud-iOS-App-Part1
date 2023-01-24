@@ -10,7 +10,6 @@ import FirebaseStorage
 import FirebaseDatabase
 import FirebaseAuth
 import ProgressHUD
-import simd
 
 class StorageService {
     static func savePhoto(username: String, uid: String, data: Data, metadata: StorageMetadata, storageProfileRef: StorageReference, dict: Dictionary<String, Any>, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
@@ -39,7 +38,7 @@ class StorageService {
                     var dictTemp = dict
                     dictTemp[PROFILE_IMAGE_URL] = metaImageUrl
                     
-                    Ref().databaseSpecificUser(uid: uid).updateChildValues(dict, withCompletionBlock: {
+                    Ref().databaseSpecificUser(uid: uid).updateChildValues(dictTemp, withCompletionBlock: {
                         (error, ref) in
                         if error == nil {
                             onSuccess()
