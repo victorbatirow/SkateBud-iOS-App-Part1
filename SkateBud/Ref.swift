@@ -10,6 +10,8 @@ import Firebase
 import FirebaseStorage
 
 let REF_USER = "users"
+let REF_MESSAGE = "messages"
+
 let URL_STORAGE_ROOT = "gs://skatebud-fadbc.appspot.com"
 let STORAGE_PROFILE = "profile"
 let PROFILE_IMAGE_URL = "profileImageUrl"
@@ -44,6 +46,14 @@ class Ref {
         return databaseUsers.child(uid)
     }
     
+    var databaseMessage: DatabaseReference {
+        return databaseRoot.child(REF_MESSAGE)
+    }
+    
+    func databaseMessageSendTo(from: String, to: String) -> DatabaseReference {
+        return databaseMessage.child(from).child(to)
+    }
+    
     // Storage Ref
     
     let storageRoot = Storage.storage().reference(forURL: URL_STORAGE_ROOT)
@@ -52,7 +62,19 @@ class Ref {
         return storageRoot.child(STORAGE_PROFILE)
     }
     
+    var storageMessage: StorageReference {
+        return storageRoot.child(REF_MESSAGE)
+    }
+    
     func storageSpecificProfile(uid:String) -> StorageReference {
         return storageProfile.child(uid)
+    }
+    
+    func storageSpecificImageMessage(id: String) -> StorageReference {
+        return storageMessage.child("photo").child(id)
+    }
+    
+    func storageSpecificVideoMessage(id: String) -> StorageReference {
+        return storageMessage.child("video").child(id)
     }
 }

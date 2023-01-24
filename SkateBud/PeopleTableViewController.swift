@@ -97,6 +97,9 @@ class PeopleTableViewController: UITableViewController, UISearchResultsUpdating 
             let chatVC = storyboard.instantiateViewController(withIdentifier: IDENTIFIER_CHAT) as! ChatViewController
             chatVC.imagePartner = cell.avatar.image
             chatVC.partnerUsername = cell.usernameLbl.text
+            chatVC.partnerId = cell.user.uid
+            print("PARTNER ID: " + cell.user.uid + "\n PARTNER  NAME: " + cell.user.username)
+            print("USER ID: " + Api.User.currentUserId)
             self.navigationController?.pushViewController(chatVC, animated: true)
         }
     }
