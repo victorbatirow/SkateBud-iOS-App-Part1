@@ -14,6 +14,8 @@ class ProfileTableViewController: UITableViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var statusTextField: UITextField!
+    @IBOutlet weak var experienceSegment: UISegmentedControl!
+    @IBOutlet weak var ageTextField: UITextField!
     
     var image: UIImage?
     
@@ -56,6 +58,22 @@ class ProfileTableViewController: UITableViewController {
             self.emailTextField.text = user.email
             self.statusTextField.text = user.status
             self.avatar.loadImage(user.profileImageUrl)
+            
+            if let age = user.age {
+                self.ageTextField.text = "\(age)"
+            } else {
+                self.ageTextField.placeholder = "Optional"
+            }
+            
+            if let experience = user.experience {
+                if (experience == "Beginner") {
+                    self.experienceSegment.selectedSegmentIndex = 0
+                } else if (experience == "Intermediate") {
+                    self.experienceSegment.selectedSegmentIndex = 1
+                } else if (experience == "Advanced") {
+                    self.experienceSegment.selectedSegmentIndex = 2
+                }
+            }
         }
     }
 
@@ -75,6 +93,16 @@ class ProfileTableViewController: UITableViewController {
         }
         if let status = statusTextField.text, !status.isEmpty {
             dict["status"] = status
+        }
+        if experienceSegment.selectedSegmentIndex == 0 {
+            dict["experience"] = "Beginner"
+        } else if experienceSegment.selectedSegmentIndex == 1 {
+            dict["experience"] = "Intermediate"
+        } else if experienceSegment.selectedSegmentIndex == 2 {
+            dict["experience"] = "Advanced"
+        }
+        if let age = ageTextField.text, !age.isEmpty {
+            dict["age"] = Int(age)
         }
         
         Api.User.saveUserProfile(dict: dict, onSuccess: {

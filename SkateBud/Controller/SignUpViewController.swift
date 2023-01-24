@@ -10,6 +10,8 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 import ProgressHUD
+import CoreLocation
+import GeoFire
 
 class SignUpViewController: UIViewController {
 
@@ -25,10 +27,15 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     
     var image: UIImage? = nil
+    let manager = CLLocationManager()
+    var userLat = ""
+    var userLong = ""
+    var geoFire: GeoFire!
+    var geoFireRef: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureLocationManager()
         setupUI()
     }
     
@@ -51,7 +58,20 @@ class SignUpViewController: UIViewController {
     @IBAction func signUpButtonDidTapped(_ sender: Any) {
         self.view.endEditing(true)
         self.validateFields()
+        
+        if let userLat = UserDefaults.standard.value(forKey: "current_location_latitude") as? String,
+           let userLong = UserDefaults.standard.value(forKey: "current_location_longitude") as? String {
+            self.userLat = userLat
+            self.userLong = userLong
+        }
         self.signUp(onSuccess: {
+            if !self.userLat.isEmpty && !self.userLong.isEmpty {
+                let location: CLLocation = CLLocation(latitude: CLLocationDegrees(Double(self.userLat)!), longitude: CLLocationDegrees(Double(self.userLong)!))
+                self.geoFireRef = Ref().databaseGeo
+                self.geoFire = GeoFire(firebaseRef: self.geoFireRef)
+                self.geoFire.setLocation(location, forKey: Api.User.currentUserId)
+                    // send location to firebase
+            }
             // set status  to online after user sign up
             Api.User.isOnline(bool: true)
             // user succesfully signed up. Switch to main tabbar view
