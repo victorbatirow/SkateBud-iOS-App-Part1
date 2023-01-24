@@ -61,18 +61,37 @@ class UserApi {
                     STATUS: "Welcome to SkateBud"
                 ]
                 
-                let storageProfile = Ref().storageSpecificProfile(uid:authData.user.uid)
+                guard let imageSelected = image else {
+                    ProgressHUD.showError(ERROR_EMPTY_PHOTO)
+                    return
+                }
+                
+                guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else {
+                    return
+                }
+                
+                let storageProfileRef = Ref().storageSpecificProfile(uid:authData.user.uid)
                 
                 let metadata = StorageMetadata()
                 metadata.contentType = "image/jpg"
                 
-                StorageService.savePhoto(username: username, uid: authData.user.uid, data: imageData, metadata: metadata, storageProfileRef: storageProfile, dict: dict, onSuccess: {
+                StorageService.savePhoto(username: username, uid: authData.user.uid, data: imageData, metadata: metadata, storageProfileRef: storageProfileRef, dict: dict, onSuccess: {
                     onSuccess()
                 }, onError: { (errorMessage) in
                     onError(errorMessage)
                 })
                 
             }
+        }
+    }
+    
+    func saveUserProfile(dict: Dictionary<String, Any>, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
+        Ref().databaseSpecificUser(uid: Api.User.currentUserId).updateChildValues(dict) { (error,dataRef) in
+            if error !=  nil {
+                onError(error!.localizedDescription)
+                return
+            }
+            onSuccess()
         }
     }
     
@@ -108,9 +127,20 @@ class UserApi {
         }
     }
     
-    func getUserInfor(uid: String, onSuccess: @escaping(UserCompletion)) {
+    func getUserInforSingleEvent(uid: String, onSuccess: @escaping(UserCompletion)) {
         let ref = Ref().databaseSpecificUser(uid: uid)
         ref.observe(.value) { (snapshot) in
+            if let dict = snapshot.value as? Dictionary<String, Any> {
+                if let user = User.transformUser(dict: dict) {
+                    onSuccess(user)
+                }
+            }
+        }
+    }
+    
+    func getUserInfor(uid: String, onSuccess: @escaping(UserCompletion)) {
+        let ref = Ref().databaseSpecificUser(uid: uid)
+        ref.observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? Dictionary<String, Any> {
                 if let user = User.transformUser(dict: dict) {
                     onSuccess(user)
