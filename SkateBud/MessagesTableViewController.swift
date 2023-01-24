@@ -57,10 +57,7 @@ class MessagesTableViewController: UITableViewController {
     func setupTableView() {
         tableView.tableFooterView = UIView()
     }
-    
-    @IBAction func logoutAction(_ sender: Any) {
-        Api.User.logOut()
-    }
+
     
     // MARK: - Table view data source
 
