@@ -8,6 +8,12 @@
 import Foundation
 import SDWebImage
 
+extension UIView {
+    class func fromNib<T: UIView>() -> T {
+        return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T
+    }
+}
+
 extension String {
     func estimateFrameForText(_ text: String) -> CGRect {
         let size = CGSize(width: 300, height: 1000)

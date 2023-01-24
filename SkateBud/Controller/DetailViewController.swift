@@ -29,12 +29,13 @@ class DetailViewController: UIViewController {
         backBtn.tintColor = .white
         
         backBtn.layer.cornerRadius = 35/2
-        backBtn.clipsToBounds
+        backBtn.clipsToBounds = true
         
         self.avatar.loadImage(user.profileImageUrl) { (image) in
             self.user.profileImage = image
         }
         avatar.image = user.profileImage
+        avatar.clipsToBounds = true
         let frameGradient = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 350)
         avatar.addBlackGradientLayer(frame: frameGradient, colors: [.clear, .black])
         
