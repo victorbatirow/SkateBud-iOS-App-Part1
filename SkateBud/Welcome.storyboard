@@ -628,6 +628,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="attachment_icon"/>
+                                        <connections>
+                                            <action selector="mediaButtonDidTapped:" destination="Qex-Fj-VO0" eventType="touchUpInside" id="dDf-Td-Td4"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPw-EV-EQn">
                                         <rect key="frame" x="48" y="5" width="32" height="32"/>
@@ -648,7 +651,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYb-52-atY">
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYb-52-atY">
                                         <rect key="frame" x="351.5" y="8" width="57.5" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="mK2-Fl-B9C"/>
