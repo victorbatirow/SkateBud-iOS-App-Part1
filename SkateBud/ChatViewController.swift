@@ -39,7 +39,6 @@ class ChatViewController: UIViewController {
         setupInputContainer()
         setupNavigationBar()
         setupTableView()
-        observeMessages()
         // Do any additional setup after loading the view.
     }
     

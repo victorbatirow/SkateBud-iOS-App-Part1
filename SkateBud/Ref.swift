@@ -13,7 +13,7 @@ let REF_USER = "users"
 let REF_MESSAGE = "messages"
 let REF_INBOX = "inbox"
 
-let URL_STORAGE_ROOT = "gs://skatebud-fadbc.appspot.com"
+let URL_STORAGE_ROOT = "gs://skatebud-1e743.appspot.com"
 let STORAGE_PROFILE = "profile"
 let PROFILE_IMAGE_URL = "profileImageUrl"
 

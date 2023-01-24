@@ -59,7 +59,7 @@ class InboxTableViewCell: UITableViewCell {
             refInbox.removeObserver(withHandle: inboxChangedMessageHandle)
         }
         
-        inboxChangedMessageHandle  = refInbox.observe(.childChanged, with: { (snapshot) in
+        inboxChangedMessageHandle = refInbox.observe(.childChanged, with: { (snapshot) in
             if let snap = snapshot.value {
                 self.inbox.updateData(key: snapshot.key, value: snap)
                 self.controller.sortedInbox()
