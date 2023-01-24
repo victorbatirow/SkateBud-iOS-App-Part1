@@ -15,6 +15,8 @@ class User {
     var status: String
     var experience: String?
     var age: Int?
+    var latitude = ""
+    var longitude = ""
     
     init(uid: String, username: String, email: String, profileImageUrl: String, status: String)  {
         self.uid = uid
@@ -41,6 +43,13 @@ class User {
             user.age = age
         }
         
+        if let latitude = dict["current_latitude"] as? String {
+            user.latitude = latitude
+        }
+        if let longitude = dict["current_longitude"] as? String {
+            user.longitude = longitude
+        }
+        
         return user
     }
     
@@ -52,5 +61,11 @@ class User {
         case "status": self.status = value
         default: break
         }
+    }
+}
+
+extension User: Equatable {
+    static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.uid == rhs.uid
     }
 }

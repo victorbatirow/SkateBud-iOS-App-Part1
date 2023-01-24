@@ -23,6 +23,11 @@ class UsersAroundViewController: UIViewController {
     var userLong = ""
     var geoFire: GeoFire!
     var geoFireRef: DatabaseReference!
+    var myQuery: GFQuery!
+    var queryHandle: DatabaseHandle?
+    var distance: Double = 500
+    var users:  [User] = []
+    var currentLocation: CLLocation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +56,7 @@ class UsersAroundViewController: UIViewController {
         let refresh = UIBarButtonItem(image: UIImage(named: "icon_refresh"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(refreshTapped))
         distanceLabel.frame = CGRect(x: 0, y: 0, width: 50, height: 20)
         distanceLabel.font = UIFont.systemFont(ofSize: 13)
-        distanceLabel.text = "100 km"
+        distanceLabel.text = "\(Int(distance)) km"
         distanceLabel.textColor = UIColor(red: 93/255, green: 79/255, blue: 141/255, alpha: 1)
         let distanceItem = UIBarButtonItem(customView: distanceLabel)
         
@@ -60,11 +65,64 @@ class UsersAroundViewController: UIViewController {
         mySlider.minimumValue = 1
         mySlider.maximumValue = 999
         mySlider.isContinuous = true
-        mySlider.value = Float(50)
+        mySlider.value = Float(distance)
         mySlider.tintColor = UIColor(red: 93/255, green: 79/255, blue: 141/255, alpha: 1)
         mySlider.addTarget(self, action: #selector(sliderValueChanged(slider:event:)), for: UIControl.Event.valueChanged)
         navigationItem.rightBarButtonItems = [refresh, distanceItem]
         navigationItem.titleView = mySlider
+    }
+    
+    func findUsers() {
+        
+        if queryHandle != nil, myQuery != nil {
+            myQuery.removeObserver(withFirebaseHandle: queryHandle!)
+            myQuery = nil
+            queryHandle = nil
+        }
+        
+        guard let userLat = UserDefaults.standard.value(forKey: "current_location_latitude") as? String, let userLong = UserDefaults.standard.value(forKey: "current_location_longitude") as? String else {
+            return
+        }
+        
+        let location: CLLocation = CLLocation(latitude: CLLocationDegrees(Double(userLat)!), longitude: CLLocationDegrees(Double(userLong)!))
+        self.users.removeAll()
+        
+        myQuery = geoFire.query(at: location, withRadius: distance)
+        
+        queryHandle = myQuery.observe(GFEventType.keyEntered, with: { (key, location) in
+            if key != Api.User.currentUserId {
+                Api.User.getUserInforSingleEvent(uid: key, onSuccess: { ( user) in
+                    if self.users.contains(user) {
+                        return
+                    }
+                    
+                    if user.experience == nil {
+                        return
+                    }
+                    
+                    switch self.segmentControl.selectedSegmentIndex {
+                    case 0:
+                        if user.experience == "Beginner" {
+                            self.users.append(user)
+                        }
+                    case 1:
+                        if user.experience == "Intermediate" {
+                            self.users.append(user)
+                        }
+                    case 2:
+                        if user.experience == "Advanced" {
+                            self.users.append(user)
+                        }
+                    case 3:
+                            self.users.append(user)
+                    default:
+                        break
+                    }
+                    
+                    self.collectionView.reloadData()
+                })
+            }
+        })
     }
     
     @IBAction func mapButtonTapped(_ sender: Any) {
@@ -72,16 +130,32 @@ class UsersAroundViewController: UIViewController {
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
-        
+        findUsers()
     }
     
     @objc func refreshTapped() {
-        print("REFRESHEDDDD")
+        findUsers()
     }
     
     @objc func sliderValueChanged(slider: UISlider, event: UIEvent) {
-        distanceLabel.text = String(Int(slider.value)) + " km"
         print(Double(slider.value))
+        if let touchEvent = event.allTouches?.first {
+            distance = Double(slider.value)
+            distanceLabel.text = String(Int(slider.value)) + " km"
+            
+            switch touchEvent.phase {
+            case .began:
+                print("began")
+            case .moved:
+                print("moved")
+            case .ended:
+                findUsers()
+            default:
+                break
+            }
+        }
+        
+        
     }
     
 
@@ -100,14 +174,14 @@ class UsersAroundViewController: UIViewController {
 extension UsersAroundViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return self.users.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserAroundCollectionViewCell", for: indexPath) as! UserAroundCollectionViewCell
-        cell.avatar.image = UIImage(named: "user_profile")
-        cell.ageLbl.text = "30"
-        cell.distanceLbl.text = "23 km"
+        let user = users[indexPath.item]
+        cell.controller = self
+        cell.loadData(user, currentLocation: self.currentLocation)
         
         return cell
     }
@@ -138,10 +212,12 @@ extension UsersAroundViewController: CLLocationManagerDelegate {
     }
     
     func  locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        manager.stopUpdatingLocation()
+//        manager.delegate = nil
+//        print("DidUpdateLocation")
         let updatedLocation: CLLocation = locations.first!
         let newCoordinate: CLLocationCoordinate2D = updatedLocation.coordinate
-        print(newCoordinate.latitude)
-        print(newCoordinate.longitude)
+        self.currentLocation = updatedLocation
         // update location
         let userDefaults: UserDefaults = UserDefaults.standard
         userDefaults.set("\(newCoordinate.latitude)", forKey: "current_location_latitude")
@@ -152,10 +228,11 @@ extension UsersAroundViewController: CLLocationManagerDelegate {
            let userLong = UserDefaults.standard.value(forKey: "current_location_longitude") as? String {
             let location: CLLocation = CLLocation(latitude: CLLocationDegrees(Double(userLat)!), longitude: CLLocationDegrees(Double(userLong)!))
             
-            self.geoFire.setLocation(location, forKey: Api.User.currentUserId)
+            Ref().databaseSpecificUser(uid: Api.User.currentUserId).updateChildValues([LAT: userLat, LONG: userLong])
             self.geoFire.setLocation(location, forKey: Api.User.currentUserId) { (error) in
                 if error == nil {
                     // Find Users
+                    self.findUsers()
                 }
             }
         }

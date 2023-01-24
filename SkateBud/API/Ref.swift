@@ -23,6 +23,8 @@ let EMAIL = "email"
 let USERNAME  = "username"
 let STATUS = "status"
 let IS_ONLINE = "isOnline"
+let LAT = "current_latitude"
+let LONG = "current_longitude"
 
 let ERROR_EMPTY_PHOTO = "Please choose your profile image"
 let ERROR_EMPTY_EMAIL = "Please entar an email address"
