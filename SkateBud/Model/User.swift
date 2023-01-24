@@ -13,6 +13,8 @@ class User {
     var email: String
     var profileImageUrl: String
     var status: String
+    var experience: String?
+    var age: Int?
     
     init(uid: String, username: String, email: String, profileImageUrl: String, status: String)  {
         self.uid = uid
@@ -32,6 +34,13 @@ class User {
               }
         
         let user = User(uid: uid, username: username, email: email, profileImageUrl: profileImageUrl, status: status)
+        if let experience = dict["experience"] as? String {
+            user.experience = experience
+        }
+        if let age = dict["age"] as? Int {
+            user.age = age
+        }
+        
         return user
     }
     

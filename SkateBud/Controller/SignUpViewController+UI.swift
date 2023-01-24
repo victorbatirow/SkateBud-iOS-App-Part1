@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import ProgressHUD
+import CoreLocation
 
 extension SignUpViewController {
     
@@ -119,14 +120,50 @@ extension SignUpViewController {
         }
     }
     
+    func configureLocationManager() {
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.distanceFilter = kCLDistanceFilterNone
+        manager.pausesLocationUpdatesAutomatically = true
+        manager.delegate = self
+        manager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            manager.startUpdatingLocation()
+        }
+    }
+    
     func signUp(onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         ProgressHUD.show("Loading...")
+        
         Api.User.signUp(withUsername: self.fullNameTextField.text!, email: self.emailTextField.text!, password: self.passwordTextField.text!, image: self.image, onSuccess: {
             ProgressHUD.dismiss()
             onSuccess()
         }) { (errorMessage) in
             onError(errorMessage)
         }
+    }
+}
+
+extension SignUpViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == .authorizedAlways) || (status == .authorizedWhenInUse) {
+            manager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        ProgressHUD.showError("\(error.localizedDescription)")
+    }
+    
+    func  locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let updatedLocation: CLLocation = locations.first!
+        let newCoordinate: CLLocationCoordinate2D = updatedLocation.coordinate
+        print(newCoordinate.latitude)
+        print(newCoordinate.longitude)
+        // update location
+        let userDefaults: UserDefaults = UserDefaults.standard
+        userDefaults.set("\(newCoordinate.latitude)", forKey: "current_location_latitude")
+        userDefaults.set("\(newCoordinate.longitude)", forKey: "current_location_longitude")
+        userDefaults.synchronize()
     }
 }
 

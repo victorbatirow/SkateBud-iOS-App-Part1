@@ -1161,10 +1161,60 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="AGE, EXPERIENCE" id="nWE-eZ-8ub">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="cZW-fx-kH0">
+                                        <rect key="frame" x="0.0" y="368" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cZW-fx-kH0" id="cMt-J4-qLh">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L5l-nN-AHv">
+                                                    <rect key="frame" x="15" y="0.0" width="384" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="L5l-nN-AHv" firstAttribute="leading" secondItem="cMt-J4-qLh" secondAttribute="leading" constant="15" id="Fml-G2-f1O"/>
+                                                <constraint firstItem="L5l-nN-AHv" firstAttribute="top" secondItem="cMt-J4-qLh" secondAttribute="top" id="KU9-gV-3vq"/>
+                                                <constraint firstAttribute="trailing" secondItem="L5l-nN-AHv" secondAttribute="trailing" constant="15" id="blP-Pa-aeS"/>
+                                                <constraint firstAttribute="bottom" secondItem="L5l-nN-AHv" secondAttribute="bottom" id="fbx-sl-U9G"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="ckc-IP-K9e">
+                                        <rect key="frame" x="0.0" y="418" width="414" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ckc-IP-K9e" id="Cty-61-bWZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="j1I-m1-D9P">
+                                                    <rect key="frame" x="20" y="9.5" width="374" height="32"/>
+                                                    <segments>
+                                                        <segment title="Beginner"/>
+                                                        <segment title="Intermediate"/>
+                                                        <segment title="Advanced"/>
+                                                    </segments>
+                                                    <color key="tintColor" systemColor="systemPurpleColor"/>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="j1I-m1-D9P" firstAttribute="centerX" secondItem="Cty-61-bWZ" secondAttribute="centerX" id="Nba-7E-gR8"/>
+                                                <constraint firstItem="j1I-m1-D9P" firstAttribute="centerY" secondItem="Cty-61-bWZ" secondAttribute="centerY" id="gBm-3q-FZh"/>
+                                                <constraint firstItem="j1I-m1-D9P" firstAttribute="leading" secondItem="Cty-61-bWZ" secondAttribute="leading" constant="20" id="gUj-lR-PdT"/>
+                                                <constraint firstAttribute="trailing" secondItem="j1I-m1-D9P" secondAttribute="trailing" constant="20" id="oV3-p6-N3g"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection id="nBI-72-mPc">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="avd-Xl-5V0">
-                                        <rect key="frame" x="0.0" y="354" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="504" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="avd-Xl-5V0" id="Qu5-e4-FsM">
                                             <rect key="frame" x="0.0" y="0.0" width="385.5" height="50"/>
@@ -1186,7 +1236,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="Bwd-ln-5Zd">
-                                        <rect key="frame" x="0.0" y="404" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="554" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bwd-ln-5Zd" id="1V6-5h-gZJ">
                                             <rect key="frame" x="0.0" y="0.0" width="385.5" height="50"/>
@@ -1212,7 +1262,7 @@
                             <tableViewSection id="K81-Wf-QDv">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="Wuw-qi-E6a">
-                                        <rect key="frame" x="0.0" y="490" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="640" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wuw-qi-E6a" id="uDn-mU-z98">
                                             <rect key="frame" x="0.0" y="0.0" width="385.5" height="50"/>
@@ -1238,7 +1288,7 @@
                             <tableViewSection id="Pfc-14-4N4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="50" id="rom-pv-ehn">
-                                        <rect key="frame" x="0.0" y="576" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="726" width="414" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rom-pv-ehn" id="g52-oN-28H">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
@@ -1277,8 +1327,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageTextField" destination="L5l-nN-AHv" id="CLr-vd-MU7"/>
                         <outlet property="avatar" destination="8l6-uD-2dd" id="7Em-qN-L2n"/>
                         <outlet property="emailTextField" destination="kvt-jE-ko8" id="Fta-jE-vee"/>
+                        <outlet property="experienceSegment" destination="j1I-m1-D9P" id="jSd-iq-YG0"/>
                         <outlet property="statusTextField" destination="ftd-Ea-VVA" id="9Y2-0C-YrF"/>
                         <outlet property="usernameTextField" destination="K2M-wq-HEg" id="ffU-hC-8Hs"/>
                     </connections>
