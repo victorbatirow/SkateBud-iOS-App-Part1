@@ -27,13 +27,14 @@ let ERROR_EMPTY_PHOTO = "Please choose your profile image"
 let ERROR_EMPTY_EMAIL = "Please entar an email address"
 let ERROR_EMPTY_USERNAME = "Please enter an username"
 let ERROR_EMPTY_PASSWORD = "Pease enter a password"
-let ERROR_EMPTY_EMAIL_RESET = "Please enter an email address for password  reset"
+let ERROR_EMPTY_EMAIL_RESET = "Please enter an email address for password reset"
 
 let SUCCESS_EMAIL_RESET = "We have just sent you a password reset email. Please check your inbox and follow the instructions to reset your password"
 
 let IDENTIFIER_WELCOME = "WelcomeVC"
 let IDENTIFIER_TABBAR = "TabBarVC"
 let IDENTIFIER_CHAT = "ChatVC"
+let IDENTIFIER_USER_AROUND = "UsersAroundViewController"
 
 let IDENTIFIER_CELL_USERS = "UserTableViewCell"
 
