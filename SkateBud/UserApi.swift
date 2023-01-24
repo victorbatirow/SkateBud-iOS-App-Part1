@@ -26,6 +26,16 @@ class UserApi {
     
     func signUp(withUsername username: String, email: String, password: String, image: UIImage?, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
         
+        //Check if user selected an image
+        guard let imageSelected = image else {
+            ProgressHUD.showError(ERROR_EMPTY_PHOTO)
+            return
+        }
+        
+        guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else  {
+            return
+        }
+        
         Auth.auth().createUser(withEmail: email, password: password)
         { (authDataResult, error) in
             if error != nil {
@@ -36,20 +46,10 @@ class UserApi {
                 let dict: Dictionary<String, Any> = [
                     UID: authData.user.uid,
                     EMAIL: authData.user.email,
-                    USERNAME:   username,
+                    USERNAME: username,
                     PROFILE_IMAGE_URL: "",
                     STATUS: "Welcome to SkateBud"
                 ]
-                
-                guard let imageSelected  = image else {
-                    ProgressHUD.showError(ERROR_EMPTY_PHOTO)
-                    return
-                }
-                
-                guard let imageData = imageSelected.jpegData(compressionQuality: 0.4) else  {
-                    return
-                }
-                
                 
                 let storageProfile = Ref().storageSpecificProfile(uid:authData.user.uid)
                 
@@ -87,4 +87,16 @@ class UserApi {
             sd.configureInitialViewController()
         }
     }
+    
+    func observeUsers(onSuccess: @escaping(UserCompletion)) {
+        Ref().databaseUsers.observe(.childAdded) { (snapshot) in
+            if let dict = snapshot.value as? Dictionary<String, Any> {
+                if let user = User.transformUser(dict: dict) {
+                onSuccess(user)
+                }
+            }
+        }
+    }
 }
+
+typealias UserCompletion = (User) -> Void

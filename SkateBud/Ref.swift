@@ -30,6 +30,7 @@ let SUCCESS_EMAIL_RESET = "We have just sent you a password reset email. Please 
 let IDENTIFIER_WELCOME = "WelcomeVC"
 let IDENTIFIER_TABBAR = "TabBarVC"
 
+let IDENTIFIER_CELL_USERS = "UserTableViewCell"
 
 class Ref {
     let databaseRoot: DatabaseReference = Database.database().reference()
