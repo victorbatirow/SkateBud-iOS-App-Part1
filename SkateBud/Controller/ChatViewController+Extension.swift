@@ -18,8 +18,17 @@ extension ChatViewController {
     
     func sortMessages() {
         messages =  messages.sorted(by: { $0.date < $1.date })
+        lastMessageKey = messages.first!.id
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.scrollToBottom()
+        }
+    }
+    
+    func scrollToBottom() {
+        if messages.count > 0 {
+            let index = IndexPath(row: messages.count-1, section: 0)
+            tableView.scrollToRow(at: index, at: UITableView.ScrollPosition.bottom, animated: false)
         }
     }
     
@@ -34,6 +43,30 @@ extension ChatViewController {
         tableView.keyboardDismissMode = .interactive
         tableView.delegate = self
         tableView.dataSource = self
+        
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
+        
+        refreshControl.addTarget(self, action: #selector(loadMore), for: .valueChanged)
+    }
+    
+    @objc func loadMore() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+            Api.Message.loadMore(lastMessageKey: self.lastMessageKey, from: Api.User.currentUserId, to: self.partnerId, onSuccess: { (messagesArray, lastMessageKey) in
+                if messagesArray.isEmpty {
+                    self.refreshControl.endRefreshing()
+                    return
+                }
+                self.messages.append(contentsOf: messagesArray)
+                self.messages = self.messages.sorted(by: { $0.date < $1.date })
+                self.lastMessageKey = lastMessageKey
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+            })
+        }
     }
     
     func setupInputContainer() {
@@ -277,6 +310,7 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageTableViewCell") as! MessageTableViewCell
         cell.playButton.isHidden = messages[indexPath.row].videoUrl == ""
+        cell.headerTimeLabel.isHidden = indexPath.row % 3 == 0 ? false : true
         cell.configureCell(uid: Api.User.currentUserId, message: messages[indexPath.row], image: imagePartner)
         return cell
     }

@@ -20,6 +20,7 @@ class MessageTableViewCell: UITableViewCell {
     @IBOutlet weak var bubbleLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var bubbleRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var headerTimeLabel: UILabel!
     
     var playerLayer: AVPlayerLayer?
     var player: AVPlayer?
@@ -146,9 +147,27 @@ class MessageTableViewCell: UITableViewCell {
         let date = Date(timeIntervalSince1970: message.date)
         let dateString = timeAgoSinceDate(date, currentDate: Date(), numericDates: true)
         dateLabel.text = dateString
-        
+        self.formatHeaderTimeLabel(time: date) { (text) in
+            self.headerTimeLabel.text = text
+        }
     }
 
+    func formatHeaderTimeLabel(time: Date, completion: @escaping (String) -> ()) {
+        var text = ""
+        let currentDate = Date()
+        let currentDateString = currentDate.toString(dateFormat: "yyyMMdd")
+        let pastDateString = time.toString(dateFormat: "yyyMMdd")
+        print(currentDateString)
+        print(pastDateString)
+        if pastDateString.elementsEqual(currentDateString) == true {
+            text = time.toString(dateFormat: "HH:mm a") + ", Today"
+        } else {
+            text = time.toString(dateFormat: "dd/MM/yyyy")
+        }
+        
+        completion(text)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
