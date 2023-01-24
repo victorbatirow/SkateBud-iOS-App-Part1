@@ -20,9 +20,6 @@
 		574EAD9929076F1F00021EB8 /* SignInViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574EAD9829076F1F00021EB8 /* SignInViewController+UI.swift */; };
 		574EAD9B2907737D00021EB8 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574EAD9A2907737D00021EB8 /* ForgotPasswordViewController.swift */; };
 		574EAD9D290773BF00021EB8 /* ForgotPasswordViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574EAD9C290773BF00021EB8 /* ForgotPasswordViewController+UI.swift */; };
-		574EADA2290782A700021EB8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 574EADA1290782A700021EB8 /* FirebaseAuth */; };
-		574EADA4290782A700021EB8 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 574EADA3290782A700021EB8 /* FirebaseDatabase */; };
-		574EADA6290782A700021EB8 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 574EADA5290782A700021EB8 /* FirebaseStorage */; };
 		5785AAB6290855E300845D86 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5785AAB5290855E300845D86 /* Api.swift */; };
 		5785AAB82908565300845D86 /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5785AAB72908565300845D86 /* UserApi.swift */; };
 		5785AABA2908617700845D86 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5785AAB92908617700845D86 /* StorageService.swift */; };
@@ -94,9 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				574EADA4290782A700021EB8 /* FirebaseDatabase in Frameworks */,
-				574EADA2290782A700021EB8 /* FirebaseAuth in Frameworks */,
-				574EADA6290782A700021EB8 /* FirebaseStorage in Frameworks */,
 				61916746C37FEEB3876F9C05 /* Pods_SkateBud.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,9 +226,6 @@
 			);
 			name = SkateBud;
 			packageProductDependencies = (
-				574EADA1290782A700021EB8 /* FirebaseAuth */,
-				574EADA3290782A700021EB8 /* FirebaseDatabase */,
-				574EADA5290782A700021EB8 /* FirebaseStorage */,
 			);
 			productName = SkateBud;
 			productReference = 574EAD772907226E00021EB8 /* SkateBud.app */;
@@ -589,24 +580,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		574EADA1290782A700021EB8 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 574EADA0290782A700021EB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		574EADA3290782A700021EB8 /* FirebaseDatabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 574EADA0290782A700021EB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
-		};
-		574EADA5290782A700021EB8 /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 574EADA0290782A700021EB8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 574EAD6F2907226E00021EB8 /* Project object */;
 }

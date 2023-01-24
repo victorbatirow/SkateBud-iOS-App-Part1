@@ -11,6 +11,7 @@ import FirebaseDatabase
 import FirebaseStorage
 import ProgressHUD
 import CoreLocation
+import GeoFire
 
 class SignUpViewController: UIViewController {
 
@@ -29,6 +30,8 @@ class SignUpViewController: UIViewController {
     let manager = CLLocationManager()
     var userLat = ""
     var userLong = ""
+    var geoFire: GeoFire!
+    var geoFireRef: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +67,9 @@ class SignUpViewController: UIViewController {
         self.signUp(onSuccess: {
             if !self.userLat.isEmpty && !self.userLong.isEmpty {
                 let location: CLLocation = CLLocation(latitude: CLLocationDegrees(Double(self.userLat)!), longitude: CLLocationDegrees(Double(self.userLong)!))
+                self.geoFireRef = Ref().databaseGeo
+                self.geoFire = GeoFire(firebaseRef: self.geoFireRef)
+                self.geoFire.setLocation(location, forKey: Api.User.currentUserId)
                     // send location to firebase
             }
             // set status  to online after user sign up

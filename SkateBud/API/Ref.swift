@@ -12,6 +12,7 @@ import FirebaseStorage
 let REF_USER = "users"
 let REF_MESSAGE = "messages"
 let REF_INBOX = "inbox"
+let REF_GEO = "geolocs"
 
 let URL_STORAGE_ROOT = "gs://skatebud-1e743.appspot.com"
 let STORAGE_PROFILE = "profile"
@@ -71,6 +72,10 @@ class Ref {
     
     func databaseInboxForUser(uid: String) -> DatabaseReference {
         return databaseInbox.child(uid)
+    }
+    
+    var databaseGeo: DatabaseReference {
+        return databaseRoot.child(REF_GEO)
     }
     
     // Storage Ref

@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import GeoFire
+import CoreLocation
+import FirebaseDatabase
+import ProgressHUD
 
 class UsersAroundViewController: UIViewController {
     
@@ -14,12 +18,32 @@ class UsersAroundViewController: UIViewController {
     @IBOutlet weak var mapViewButton: UIButton!
     let mySlider = UISlider()
     let distanceLabel = UILabel()
+    let manager = CLLocationManager()
+    var userLat = ""
+    var userLong = ""
+    var geoFire: GeoFire!
+    var geoFireRef: DatabaseReference!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        configureLocationManager()
         setupNavigationBar()
+    }
+    
+    func configureLocationManager() {
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.distanceFilter = kCLDistanceFilterNone
+        manager.pausesLocationUpdatesAutomatically = true
+        manager.delegate = self
+        manager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            manager.startUpdatingLocation()
+        }
+        
+        self.geoFireRef = Ref().databaseGeo
+        self.geoFire = GeoFire(firebaseRef: self.geoFireRef)
     }
     
     func setupNavigationBar() {
@@ -100,4 +124,40 @@ extension UsersAroundViewController: UICollectionViewDelegate, UICollectionViewD
         return 1
     }
     
+}
+
+extension UsersAroundViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if (status == .authorizedAlways) || (status == .authorizedWhenInUse) {
+            manager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        ProgressHUD.showError("\(error.localizedDescription)")
+    }
+    
+    func  locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let updatedLocation: CLLocation = locations.first!
+        let newCoordinate: CLLocationCoordinate2D = updatedLocation.coordinate
+        print(newCoordinate.latitude)
+        print(newCoordinate.longitude)
+        // update location
+        let userDefaults: UserDefaults = UserDefaults.standard
+        userDefaults.set("\(newCoordinate.latitude)", forKey: "current_location_latitude")
+        userDefaults.set("\(newCoordinate.longitude)", forKey: "current_location_longitude")
+        userDefaults.synchronize()
+        
+        if let userLat = UserDefaults.standard.value(forKey: "current_location_latitude") as? String,
+           let userLong = UserDefaults.standard.value(forKey: "current_location_longitude") as? String {
+            let location: CLLocation = CLLocation(latitude: CLLocationDegrees(Double(userLat)!), longitude: CLLocationDegrees(Double(userLong)!))
+            
+            self.geoFire.setLocation(location, forKey: Api.User.currentUserId)
+            self.geoFire.setLocation(location, forKey: Api.User.currentUserId) { (error) in
+                if error == nil {
+                    // Find Users
+                }
+            }
+        }
+    }
 }

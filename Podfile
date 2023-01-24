@@ -6,7 +6,14 @@ target 'SkateBud' do
   use_frameworks!
 
   # Pods for SkateBud
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
   pod 'ProgressHUD'
   pod 'SDWebImage'
+  pod 'GeoFire'
 
 end
