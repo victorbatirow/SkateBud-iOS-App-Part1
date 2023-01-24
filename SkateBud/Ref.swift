@@ -29,6 +29,7 @@ let SUCCESS_EMAIL_RESET = "We have just sent you a password reset email. Please 
 
 let IDENTIFIER_WELCOME = "WelcomeVC"
 let IDENTIFIER_TABBAR = "TabBarVC"
+let IDENTIFIER_CHAT = "ChatVC"
 
 let IDENTIFIER_CELL_USERS = "UserTableViewCell"
 
