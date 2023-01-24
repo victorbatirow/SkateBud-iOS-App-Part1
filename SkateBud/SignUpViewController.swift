@@ -52,6 +52,8 @@ class SignUpViewController: UIViewController {
         self.view.endEditing(true)
         self.validateFields()
         self.signUp(onSuccess: {
+            // set status  to online after user sign up
+            Api.User.isOnline(bool: true)
             // user succesfully signed up. Switch to main tabbar view
             (self.view.window?.windowScene?.delegate as! SceneDelegate).configureInitialViewController()
         }) { (errorMessage) in

@@ -82,6 +82,7 @@ class PeopleTableViewController: UITableViewController, UISearchResultsUpdating 
         let cell = tableView.dequeueReusableCell(withIdentifier: IDENTIFIER_CELL_USERS, for: indexPath) as! UserTableViewCell
         
         let user = searchController.isActive ? searchResults[indexPath.row] : users[indexPath.row]
+        cell.controller = self
         cell.loadData(user)
 
         return cell
@@ -98,6 +99,7 @@ class PeopleTableViewController: UITableViewController, UISearchResultsUpdating 
             chatVC.imagePartner = cell.avatar.image
             chatVC.partnerUsername = cell.usernameLbl.text
             chatVC.partnerId = cell.user.uid
+            chatVC.partnerUser = cell.user
             self.navigationController?.pushViewController(chatVC, animated: true)
         }
     }

@@ -16,6 +16,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var inputTextView: UITextView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     
     var imagePartner: UIImage!
@@ -23,9 +24,14 @@ class ChatViewController: UIViewController {
     var topLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
     var partnerUsername: String!
     var partnerId: String!
+    var partnerUser: User!
     var placeholderLabel = UILabel()
     var picker = UIImagePickerController()
     var messages = [Message]()
+    var isActive = false
+    var lastTimeOnline = ""
+    var isTyping = false
+    var timer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()

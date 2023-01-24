@@ -107,6 +107,7 @@ class UserApi {
     
     func logOut() {
         do {
+            Api.User.isOnline(bool: false)
             try Auth.auth().signOut()
         } catch {
             ProgressHUD.showError(error.localizedDescription)
@@ -149,6 +150,24 @@ class UserApi {
         }
     }
     
+    func isOnline(bool: Bool) {
+        if !Api.User.currentUserId.isEmpty {
+            let ref = Ref().databaseIsOnline(uid: Api.User.currentUserId)
+            let dict: Dictionary<String, Any> = [
+                "online": bool as Any,
+                "latest": Date().timeIntervalSince1970 as Any
+            ]
+            ref.updateChildValues(dict)
+        }
+    }
+    
+    func typing(from: String, to: String) {
+        let ref = Ref().databaseIsOnline(uid: from)
+        let dict: Dictionary<String, Any> = [
+            "typing": to
+        ]
+        ref.updateChildValues(dict)
+    }
 }
 
 typealias UserCompletion = (User) -> Void

@@ -532,23 +532,34 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUu-py-KLB">
+                                            <rect key="frame" x="65" y="65" width="15" height="15"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="34q-4O-1Xb"/>
+                                                <constraint firstAttribute="width" constant="15" id="ptH-0O-Dfy"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Dkn-f7-K1z" firstAttribute="leading" secondItem="9Xc-QW-qN6" secondAttribute="trailing" constant="15" id="4tL-v6-EsV"/>
                                         <constraint firstAttribute="trailing" secondItem="of1-ph-3Ty" secondAttribute="trailing" constant="20" id="8BS-Dj-NPi"/>
                                         <constraint firstItem="9Xc-QW-qN6" firstAttribute="leading" secondItem="xUL-bN-RzB" secondAttribute="leading" constant="20" id="BvX-cU-rpi"/>
+                                        <constraint firstItem="XUu-py-KLB" firstAttribute="trailing" secondItem="9Xc-QW-qN6" secondAttribute="trailing" id="Clb-8r-ZGb"/>
                                         <constraint firstItem="6Oh-sq-xa2" firstAttribute="leading" secondItem="9Xc-QW-qN6" secondAttribute="trailing" constant="15" id="Nrn-LB-9Da"/>
                                         <constraint firstItem="of1-ph-3Ty" firstAttribute="top" secondItem="6Oh-sq-xa2" secondAttribute="top" id="OUE-dS-vJd"/>
                                         <constraint firstItem="9Xc-QW-qN6" firstAttribute="top" secondItem="xUL-bN-RzB" secondAttribute="top" constant="20" id="PgJ-QX-5rh"/>
                                         <constraint firstAttribute="trailing" secondItem="Dkn-f7-K1z" secondAttribute="trailing" constant="20" id="QST-8G-tN1"/>
                                         <constraint firstItem="Dkn-f7-K1z" firstAttribute="top" secondItem="6Oh-sq-xa2" secondAttribute="bottom" constant="5" id="UHJ-iE-5AQ"/>
                                         <constraint firstItem="6Oh-sq-xa2" firstAttribute="top" secondItem="xUL-bN-RzB" secondAttribute="top" constant="25" id="t02-sc-6kF"/>
+                                        <constraint firstItem="XUu-py-KLB" firstAttribute="bottom" secondItem="9Xc-QW-qN6" secondAttribute="bottom" id="vST-Kd-mYd"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatar" destination="9Xc-QW-qN6" id="kdS-kw-4rf"/>
                                     <outlet property="dateLabel" destination="of1-ph-3Ty" id="v3N-Ag-mWq"/>
                                     <outlet property="messageLabel" destination="Dkn-f7-K1z" id="jY7-Og-tME"/>
+                                    <outlet property="onlineView" destination="XUu-py-KLB" id="TKM-B3-AtI"/>
                                     <outlet property="usernameLabel" destination="6Oh-sq-xa2" id="Asy-lc-dl5"/>
                                 </connections>
                             </tableViewCell>
@@ -606,6 +617,14 @@
                                                 <constraint firstAttribute="width" constant="36" id="Ms3-FP-ELr"/>
                                             </constraints>
                                         </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6RH-77-3Mb">
+                                            <rect key="frame" x="65" y="65" width="15" height="15"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="C4D-Lm-eYh"/>
+                                                <constraint firstAttribute="width" constant="15" id="w2p-6l-LPz"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="hT6-Mz-oIn" firstAttribute="leading" secondItem="uu5-xz-Cyn" secondAttribute="leading" constant="20" id="1Jl-eW-ZNt"/>
@@ -614,12 +633,15 @@
                                         <constraint firstItem="hT6-Mz-oIn" firstAttribute="top" secondItem="uu5-xz-Cyn" secondAttribute="top" constant="20" id="IpY-Hr-iQU"/>
                                         <constraint firstItem="Au9-ov-CXA" firstAttribute="top" secondItem="4YK-Xx-Ozx" secondAttribute="bottom" constant="5" id="SAC-mD-6zt"/>
                                         <constraint firstItem="Au9-ov-CXA" firstAttribute="leading" secondItem="hT6-Mz-oIn" secondAttribute="trailing" constant="15" id="ZDm-Et-ngo"/>
+                                        <constraint firstItem="6RH-77-3Mb" firstAttribute="trailing" secondItem="hT6-Mz-oIn" secondAttribute="trailing" id="Zrz-v9-qIW"/>
                                         <constraint firstItem="Z33-GV-bkN" firstAttribute="centerY" secondItem="hT6-Mz-oIn" secondAttribute="centerY" id="jRe-SU-d9y"/>
+                                        <constraint firstItem="6RH-77-3Mb" firstAttribute="bottom" secondItem="hT6-Mz-oIn" secondAttribute="bottom" id="nye-ij-Q8q"/>
                                         <constraint firstItem="4YK-Xx-Ozx" firstAttribute="top" secondItem="uu5-xz-Cyn" secondAttribute="top" constant="25" id="pqA-6o-nN1"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avatar" destination="hT6-Mz-oIn" id="jUt-y4-KBN"/>
+                                    <outlet property="onlineView" destination="6RH-77-3Mb" id="AOG-35-Xty"/>
                                     <outlet property="statusLbl" destination="Au9-ov-CXA" id="hho-PF-ShO"/>
                                     <outlet property="usernameLbl" destination="4YK-Xx-Ozx" id="OqJ-EX-inr"/>
                                 </connections>
@@ -827,6 +849,7 @@
                     </view>
                     <connections>
                         <outlet property="audioButton" destination="OPw-EV-EQn" id="cll-Sc-dJR"/>
+                        <outlet property="bottomConstraint" destination="UMh-Ed-9L4" id="kNc-aD-AP1"/>
                         <outlet property="inputTextView" destination="FgK-ii-ggI" id="nbE-t1-F5T"/>
                         <outlet property="mediaButton" destination="tPC-5m-KWi" id="3mm-SR-OCT"/>
                         <outlet property="sendButton" destination="HYb-52-atY" id="Gq4-z4-paA"/>
