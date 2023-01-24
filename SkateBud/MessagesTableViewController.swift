@@ -36,6 +36,15 @@ class MessagesTableViewController: UITableViewController {
         if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
             avatarImageView.loadImage(photoUrl.absoluteString)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateProfile), name: NSNotification.Name("updateProfileImage"), object: nil)
+        
+    }
+    
+    @objc func updateProfile() {
+        if let currentUser = Auth.auth().currentUser, let photoUrl = currentUser.photoURL {
+            avatarImageView.loadImage(photoUrl.absoluteString)
+        }
     }
     
     func observeInbox() {
@@ -75,6 +84,7 @@ class MessagesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InboxTableViewCell", for: indexPath) as! InboxTableViewCell
         let inbox = self.inboxArray[indexPath.row]
+        cell.controller = self
         cell.configureCell(uid: Api.User.currentUserId, inbox: inbox)
 
         // Configure the cell...
@@ -93,6 +103,7 @@ class MessagesTableViewController: UITableViewController {
             chatVC.imagePartner = cell.avatar.image
             chatVC.partnerUsername = cell.usernameLabel.text
             chatVC.partnerId = cell.user.uid
+            chatVC.partnerUser = cell.user
             self.navigationController?.pushViewController(chatVC, animated: true)
         }
     }

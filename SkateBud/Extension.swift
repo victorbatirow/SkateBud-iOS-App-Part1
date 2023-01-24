@@ -71,3 +71,23 @@ extension UIImageView {
         }
     }
 }
+
+extension Double {
+    func convertDate() -> String {
+        var string = ""
+        let date: Date = Date(timeIntervalSince1970: self)
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        if calendar.isDateInToday(date) {
+            string = ""
+            formatter.timeStyle = .short
+        } else if calendar.isDateInYesterday(date) {
+            string = "Yesterday: "
+            formatter.timeStyle = .short
+        } else {
+            formatter.dateStyle = .short
+        }
+        let dateString = formatter.string(from: date)
+        return string + dateString
+    }
+}
