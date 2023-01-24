@@ -14,10 +14,6 @@ extension ChatViewController {
             self.messages.append(message)
             self.sortMessages()
         }
-        Api.Message.receiveMessage(from: partnerId, to: Api.User.currentUserId) { (message) in
-            self.messages.append(message)
-            self.sortMessages()
-        }
     }
     
     func sortMessages() {
@@ -158,8 +154,8 @@ extension ChatViewController {
                 if let latest = snap["latest"] as? Double {
                     self.lastTimeOnline = latest.convertDate()
                 }
-                self.updateTopLabel(bool: self.isActive)
             }
+            self.updateTopLabel(bool: self.isActive)
         }
         ref.observe(.childChanged) { (snapshot) in
             if let snap = snapshot.value {

@@ -86,7 +86,7 @@ class UserApi {
     }
     
     func saveUserProfile(dict: Dictionary<String, Any>, onSuccess: @escaping() -> Void, onError: @escaping(_ errorMessage: String) -> Void) {
-        Ref().databaseSpecificUser(uid: Api.User.currentUserId).updateChildValues(dict) { (error,dataRef) in
+        Ref().databaseSpecificUser(uid: Api.User.currentUserId).updateChildValues(dict) { (error, dataRef) in
             if error !=  nil {
                 onError(error!.localizedDescription)
                 return
