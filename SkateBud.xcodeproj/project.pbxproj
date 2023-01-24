@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		570BADFC29380E0100505328 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570BADFB29380E0100505328 /* DetailViewController.swift */; };
+		570BADFE293AEE7400505328 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570BADFD293AEE7400505328 /* MapTableViewCell.swift */; };
 		574EAD7B2907226E00021EB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574EAD7A2907226E00021EB8 /* AppDelegate.swift */; };
 		574EAD7D2907226E00021EB8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574EAD7C2907226E00021EB8 /* SceneDelegate.swift */; };
 		574EAD7F2907226E00021EB8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574EAD7E2907226E00021EB8 /* ViewController.swift */; };
@@ -47,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		570BADFB29380E0100505328 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		570BADFD293AEE7400505328 /* MapTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		574EAD772907226E00021EB8 /* SkateBud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkateBud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		574EAD7A2907226E00021EB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		574EAD7C2907226E00021EB8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				574EAD92290756A600021EB8 /* SignUpViewController.swift */,
 				574EAD9429075FAB00021EB8 /* SignUpViewController+UI.swift */,
 				57AD89242935922A0020D71B /* MapViewController.swift */,
+				570BADFB29380E0100505328 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				57D6CBED2922FE0200373437 /* InboxTableViewCell.swift */,
 				5785AAC12909F88E00845D86 /* UserTableViewCell.swift */,
 				57A922722932F3B100639488 /* UserAroundCollectionViewCell.swift */,
+				570BADFD293AEE7400505328 /* MapTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -334,6 +340,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				570BADFE293AEE7400505328 /* MapTableViewCell.swift in Sources */,
+				570BADFC29380E0100505328 /* DetailViewController.swift in Sources */,
 				57AD89252935922A0020D71B /* MapViewController.swift in Sources */,
 				574EAD9929076F1F00021EB8 /* SignInViewController+UI.swift in Sources */,
 				5785AABC2908664000845D86 /* Ref.swift in Sources */,
