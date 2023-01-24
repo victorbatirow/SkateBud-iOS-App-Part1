@@ -30,6 +30,9 @@ class MessagesTableViewController: UITableViewController {
         avatarImageView.clipsToBounds = true
         containView.addSubview(avatarImageView)
         
+        let radarItem = UIBarButtonItem(image: UIImage(named: "icon_cards"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(radarItemDidTapped))
+        self.navigationItem.rightBarButtonItem = radarItem
+        
         let leftBarButton = UIBarButtonItem(customView: containView)
         self.navigationItem.leftBarButtonItem = leftBarButton
         
@@ -39,6 +42,12 @@ class MessagesTableViewController: UITableViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateProfile), name: NSNotification.Name("updateProfileImage"), object: nil)
         
+    }
+    
+    @objc func radarItemDidTapped() {
+        let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
+        let radarVC = storyboard.instantiateViewController(withIdentifier: IDENTIFIER_RADAR) as! RadarViewController
+        self.navigationController?.pushViewController(radarVC, animated: true)
     }
     
     @objc func updateProfile() {
