@@ -627,9 +627,6 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BFZ-qd-Z6o">
                                                     <rect key="frame" x="55" y="12" width="351" height="81"/>
                                                     <subviews>
-                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ztu-1f-rq7">
-                                                            <rect key="frame" x="165.5" y="30.5" width="20" height="20"/>
-                                                        </activityIndicatorView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnK-4N-AbS">
                                                             <rect key="frame" x="15" y="8" width="321" height="53"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -648,11 +645,17 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUU-T9-lhq">
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUU-T9-lhq">
                                                             <rect key="frame" x="290" y="5" width="56" height="46"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="play_icon"/>
+                                                            <connections>
+                                                                <action selector="PlayButtonDidTapped:" destination="bTW-45-qVr" eventType="touchUpInside" id="Ddw-bQ-RPY"/>
+                                                            </connections>
                                                         </button>
+                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ztu-1f-rq7">
+                                                            <rect key="frame" x="165.5" y="30.5" width="20" height="20"/>
+                                                        </activityIndicatorView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
@@ -689,7 +692,6 @@
                                             <outlet property="bubbleLeftConstraint" destination="SBE-nB-erX" id="DPJ-yD-fpX"/>
                                             <outlet property="bubbleRightConstraint" destination="9vb-po-Vyf" id="CxL-EA-JpA"/>
                                             <outlet property="bubbleView" destination="BFZ-qd-Z6o" id="EPS-cI-oA1"/>
-                                            <outlet property="bubbleWidthConstrain" destination="dIq-rw-aBg" id="WhM-HB-9rb"/>
                                             <outlet property="bubbleWidthConstraint" destination="dIq-rw-aBg" id="7SH-it-9rW"/>
                                             <outlet property="dateLabel" destination="CZE-5s-KUE" id="SBn-fC-9lr"/>
                                             <outlet property="photoMessage" destination="WvC-Mh-a7g" id="bRF-BX-3Aa"/>
