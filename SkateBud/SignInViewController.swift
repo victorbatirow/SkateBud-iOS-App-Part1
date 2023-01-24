@@ -41,7 +41,8 @@ class SignInViewController: UIViewController {
         self.view.endEditing(true)
         self.validateFields()
         self.signIn(onSuccess: {
-            // switch view
+            // user succesfully logged in. Switch to main tabbar view
+            (self.view.window?.windowScene?.delegate as! SceneDelegate).configureInitialViewController()
         }) { (errorMessage) in
             ProgressHUD.showError(errorMessage)
         }
