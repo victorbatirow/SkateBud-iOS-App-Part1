@@ -99,7 +99,7 @@ class UsersAroundViewController: UIViewController {
                     if user.experience == nil {
                         return
                     }
-                    
+
                     switch self.segmentControl.selectedSegmentIndex {
                     case 0:
                         if user.experience == "Beginner" {
@@ -126,7 +126,11 @@ class UsersAroundViewController: UIViewController {
     }
     
     @IBAction func mapButtonTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
+        let mapVC = storyboard.instantiateViewController(withIdentifier: IDENTIFIER_MAP) as! MapViewController
+        mapVC.users = self.users
         
+        self.navigationController?.pushViewController(mapVC, animated: true)
     }
     
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
@@ -141,7 +145,7 @@ class UsersAroundViewController: UIViewController {
         print(Double(slider.value))
         if let touchEvent = event.allTouches?.first {
             distance = Double(slider.value)
-            distanceLabel.text = String(Int(slider.value)) + " km"
+            distanceLabel.text = "\(Int(slider.value)) km"
             
             switch touchEvent.phase {
             case .began:
@@ -154,8 +158,6 @@ class UsersAroundViewController: UIViewController {
                 break
             }
         }
-        
-        
     }
     
 
@@ -212,8 +214,8 @@ extension UsersAroundViewController: CLLocationManagerDelegate {
     }
     
     func  locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        manager.stopUpdatingLocation()
-//        manager.delegate = nil
+        manager.stopUpdatingLocation()
+        manager.delegate = nil
 //        print("DidUpdateLocation")
         let updatedLocation: CLLocation = locations.first!
         let newCoordinate: CLLocationCoordinate2D = updatedLocation.coordinate

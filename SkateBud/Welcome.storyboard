@@ -872,7 +872,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bW1-8v-uJc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2659" y="1462"/>
+            <point key="canvasLocation" x="2635" y="1462"/>
         </scene>
         <!--Users Around View Controller-->
         <scene sceneID="hBc-3Z-YSm">
@@ -1008,7 +1008,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQf-Wy-gOA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3846.376811594203" y="1422.9910714285713"/>
+            <point key="canvasLocation" x="3558" y="1462"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="iik-7H-AZ9">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" id="he0-8B-hDY" customClass="MapViewController" customModule="SkateBud" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MQT-DE-qkh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="psM-Lo-XfK">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Bid-VQ-VTo">
+                                <rect key="frame" x="302" y="851" width="97" height="32"/>
+                                <segments>
+                                    <segment title="Car"/>
+                                    <segment title="Walk"/>
+                                </segments>
+                                <color key="tintColor" systemColor="systemPurpleColor"/>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZTh-ih-5Ss"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="psM-Lo-XfK" firstAttribute="trailing" secondItem="ZTh-ih-5Ss" secondAttribute="trailing" id="5ra-6W-gCh"/>
+                            <constraint firstItem="psM-Lo-XfK" firstAttribute="leading" secondItem="ZTh-ih-5Ss" secondAttribute="leading" id="H8R-hP-Jck"/>
+                            <constraint firstItem="ZTh-ih-5Ss" firstAttribute="trailing" secondItem="Bid-VQ-VTo" secondAttribute="trailing" constant="15" id="PSE-6X-d6v"/>
+                            <constraint firstAttribute="bottom" secondItem="psM-Lo-XfK" secondAttribute="bottom" id="eb0-Tw-3oE"/>
+                            <constraint firstItem="psM-Lo-XfK" firstAttribute="top" secondItem="MQT-DE-qkh" secondAttribute="top" id="flY-Hg-SLm"/>
+                            <constraint firstItem="Bid-VQ-VTo" firstAttribute="bottom" secondItem="ZTh-ih-5Ss" secondAttribute="bottom" constant="20" id="hZa-dk-56v"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="psM-Lo-XfK" id="WTN-Qk-K0e"/>
+                        <outlet property="segmentControl" destination="Bid-VQ-VTo" id="zyZ-fh-B0E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y2N-sm-u7m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4457.971014492754" y="1461.8303571428571"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7ab-Ah-Ixt">
