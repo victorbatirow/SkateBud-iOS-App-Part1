@@ -132,32 +132,11 @@
 			children = (
 				574EAD7A2907226E00021EB8 /* AppDelegate.swift */,
 				574EAD7C2907226E00021EB8 /* SceneDelegate.swift */,
-				574EAD7E2907226E00021EB8 /* ViewController.swift */,
-				574EAD902907544100021EB8 /* ViewController+UI.swift */,
 				574EAD8E290728E700021EB8 /* Welcome.storyboard */,
-				57D6CBF32923111900373437 /* ProfileTableViewController.swift */,
-				57D6CBE72913751800373437 /* MessageTableViewCell.swift */,
-				5785AAC7290B360D00845D86 /* ChatViewController.swift */,
-				57D6CBE9291D8DF800373437 /* ChatViewController+Extension.swift */,
-				5785AABF2909F15600845D86 /* PeopleTableViewController.swift */,
-				57D6CBED2922FE0200373437 /* InboxTableViewCell.swift */,
-				5785AAC12909F88E00845D86 /* UserTableViewCell.swift */,
-				5785AABD2909E36C00845D86 /* MessagesTableViewController.swift */,
-				574EAD9A2907737D00021EB8 /* ForgotPasswordViewController.swift */,
-				574EAD9C290773BF00021EB8 /* ForgotPasswordViewController+UI.swift */,
-				574EAD9629076D9D00021EB8 /* SignInViewController.swift */,
-				574EAD9829076F1F00021EB8 /* SignInViewController+UI.swift */,
-				574EAD92290756A600021EB8 /* SignUpViewController.swift */,
-				574EAD9429075FAB00021EB8 /* SignUpViewController+UI.swift */,
-				5785AAB92908617700845D86 /* StorageService.swift */,
-				5785AABB2908663F00845D86 /* Ref.swift */,
-				57D6CBEB2922FB0800373437 /* Inbox.swift */,
-				5785AAC3290A076600845D86 /* User.swift */,
-				57D6CBE529136B4000373437 /* Message.swift */,
-				5785AAB5290855E300845D86 /* Api.swift */,
-				57D6CBEF2922FF2900373437 /* InboxApi.swift */,
-				5785AAC929120B9F00845D86 /* MessageApi.swift */,
-				5785AAB72908565300845D86 /* UserApi.swift */,
+				57A9226D292F00DD00639488 /* Controller */,
+				57A9226E292F00F900639488 /* View */,
+				57A9226F292F011C00639488 /* API */,
+				57A9226C292F009700639488 /* Model */,
 				5785AAC5290A172900845D86 /* Extension.swift */,
 				574EAD832907226F00021EB8 /* Assets.xcassets */,
 				574EAD852907226F00021EB8 /* LaunchScreen.storyboard */,
@@ -165,6 +144,59 @@
 				574EAD882907226F00021EB8 /* Info.plist */,
 			);
 			path = SkateBud;
+			sourceTree = "<group>";
+		};
+		57A9226C292F009700639488 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				57D6CBEB2922FB0800373437 /* Inbox.swift */,
+				5785AAC3290A076600845D86 /* User.swift */,
+				57D6CBE529136B4000373437 /* Message.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		57A9226D292F00DD00639488 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				574EAD7E2907226E00021EB8 /* ViewController.swift */,
+				574EAD902907544100021EB8 /* ViewController+UI.swift */,
+				57D6CBF32923111900373437 /* ProfileTableViewController.swift */,
+				5785AAC7290B360D00845D86 /* ChatViewController.swift */,
+				57D6CBE9291D8DF800373437 /* ChatViewController+Extension.swift */,
+				5785AABF2909F15600845D86 /* PeopleTableViewController.swift */,
+				5785AABD2909E36C00845D86 /* MessagesTableViewController.swift */,
+				574EAD9A2907737D00021EB8 /* ForgotPasswordViewController.swift */,
+				574EAD9C290773BF00021EB8 /* ForgotPasswordViewController+UI.swift */,
+				574EAD9629076D9D00021EB8 /* SignInViewController.swift */,
+				574EAD9829076F1F00021EB8 /* SignInViewController+UI.swift */,
+				574EAD92290756A600021EB8 /* SignUpViewController.swift */,
+				574EAD9429075FAB00021EB8 /* SignUpViewController+UI.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		57A9226E292F00F900639488 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				57D6CBE72913751800373437 /* MessageTableViewCell.swift */,
+				57D6CBED2922FE0200373437 /* InboxTableViewCell.swift */,
+				5785AAC12909F88E00845D86 /* UserTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		57A9226F292F011C00639488 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5785AAB92908617700845D86 /* StorageService.swift */,
+				5785AABB2908663F00845D86 /* Ref.swift */,
+				5785AAB5290855E300845D86 /* Api.swift */,
+				57D6CBEF2922FF2900373437 /* InboxApi.swift */,
+				5785AAC929120B9F00845D86 /* MessageApi.swift */,
+				5785AAB72908565300845D86 /* UserApi.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		E1DD78A8E05FBF219E4593CB /* Frameworks */ = {
