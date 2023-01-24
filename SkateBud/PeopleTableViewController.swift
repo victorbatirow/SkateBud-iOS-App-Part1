@@ -17,9 +17,13 @@ class PeopleTableViewController: UITableViewController, UISearchResultsUpdating 
         super.viewDidLoad()
         setupSearchBarController()
         setupNavigationBar()
+        setupTableView()
         // Listen for children added to the location manager by users reference
         observeUsers()
-        
+    }
+    
+    func setupTableView() {
+        tableView.tableFooterView = UIView()
     }
     
     func setupSearchBarController() {
@@ -28,6 +32,7 @@ class PeopleTableViewController: UITableViewController, UISearchResultsUpdating 
         searchController.searchBar.placeholder = "Search users..."
         searchController.searchBar.barTintColor = UIColor.white
         searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationItem.searchController = searchController
     }
@@ -35,7 +40,6 @@ class PeopleTableViewController: UITableViewController, UISearchResultsUpdating 
     func setupNavigationBar() {
         navigationItem.title = "People"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
     }
     
     func observeUsers() {
@@ -85,6 +89,16 @@ class PeopleTableViewController: UITableViewController, UISearchResultsUpdating 
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell =  tableView.cellForRow(at: indexPath) as? UserTableViewCell {
+            let storyboard = UIStoryboard(name: "Welcome", bundle: nil)
+            let chatVC = storyboard.instantiateViewController(withIdentifier: IDENTIFIER_CHAT) as! ChatViewController
+            chatVC.imagePartner = cell.avatar.image
+            chatVC.partnerUsername = cell.usernameLbl.text
+            self.navigationController?.pushViewController(chatVC, animated: true)
+        }
     }
 
     /*

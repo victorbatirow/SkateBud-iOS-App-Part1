@@ -33,6 +33,7 @@
 		5785AAC22909F88E00845D86 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5785AAC12909F88E00845D86 /* UserTableViewCell.swift */; };
 		5785AAC4290A076600845D86 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5785AAC3290A076600845D86 /* User.swift */; };
 		5785AAC6290A172900845D86 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5785AAC5290A172900845D86 /* Extension.swift */; };
+		5785AAC8290B360D00845D86 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5785AAC7290B360D00845D86 /* ChatViewController.swift */; };
 		61916746C37FEEB3876F9C05 /* Pods_SkateBud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CACBE2E4CAE47DF95E8C95 /* Pods_SkateBud.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		5785AAC12909F88E00845D86 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		5785AAC3290A076600845D86 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5785AAC5290A172900845D86 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		5785AAC7290B360D00845D86 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		62536699613B19E506362279 /* Pods-SkateBud.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkateBud.debug.xcconfig"; path = "Target Support Files/Pods-SkateBud/Pods-SkateBud.debug.xcconfig"; sourceTree = "<group>"; };
 		9B857895DD00F4417DD0DC2F /* Pods-SkateBud.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkateBud.release.xcconfig"; path = "Target Support Files/Pods-SkateBud/Pods-SkateBud.release.xcconfig"; sourceTree = "<group>"; };
 		D3CACBE2E4CAE47DF95E8C95 /* Pods_SkateBud.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkateBud.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,7 @@
 				574EAD7E2907226E00021EB8 /* ViewController.swift */,
 				574EAD902907544100021EB8 /* ViewController+UI.swift */,
 				574EAD8E290728E700021EB8 /* Welcome.storyboard */,
+				5785AAC7290B360D00845D86 /* ChatViewController.swift */,
 				5785AABF2909F15600845D86 /* PeopleTableViewController.swift */,
 				5785AAC12909F88E00845D86 /* UserTableViewCell.swift */,
 				5785AAC5290A172900845D86 /* Extension.swift */,
@@ -290,6 +293,7 @@
 				5785AAC4290A076600845D86 /* User.swift in Sources */,
 				574EAD7D2907226E00021EB8 /* SceneDelegate.swift in Sources */,
 				5785AAC22909F88E00845D86 /* UserTableViewCell.swift in Sources */,
+				5785AAC8290B360D00845D86 /* ChatViewController.swift in Sources */,
 				574EAD93290756A600021EB8 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
