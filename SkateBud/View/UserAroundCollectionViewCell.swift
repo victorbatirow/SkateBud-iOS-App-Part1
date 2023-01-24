@@ -31,6 +31,9 @@ class UserAroundCollectionViewCell: UICollectionViewCell {
     func loadData(_ user: User, currentLocation: CLLocation?) {
         self.user = user
         self.avatar.loadImage(user.profileImageUrl)
+        self.avatar.loadImage(user.profileImageUrl) { (image) in
+            user.profileImage = image
+        }
         if let age = user.age {
             self.ageLbl.text = "\(age)"
         } else {
@@ -76,9 +79,8 @@ class UserAroundCollectionViewCell: UICollectionViewCell {
         
         if !user.latitude.isEmpty && !user.longitude.isEmpty {
             let userLocation = CLLocation(latitude: Double(user.latitude)!, longitude: Double(user.longitude)!)
-            let distanceInMeters: CLLocationDistance = userLocation.distance(from: currentLocation!)
-            let distanceInKM = distanceInMeters / 1000
-            distanceLbl.text = String(format: "%.1f KM", distanceInKM)
+            let distanceInKM: CLLocationDistance = userLocation.distance(from: currentLocation!) / 1000
+            distanceLbl.text = String(format: "%.0f km", distanceInKM)
         } else {
             distanceLbl.text = ""
         }
